@@ -27,7 +27,6 @@ client.on("message", (message) => {
 
         if(!isValidFlag){
             message.channel.send("Invalid flag!");
-            console.log("invalid flag")
         }
 
         message.delete();
