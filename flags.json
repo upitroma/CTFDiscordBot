@@ -1,0 +1,4 @@
+{
+    "flags":["NTI{flag1}","NTI{flag2}"],
+    "responses":["is in!","has rooted the system!"]
+}

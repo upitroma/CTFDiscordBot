@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const config = require("./token.json");
+const flags = require("./flags.json");
 const client = new Discord.Client();
 client.login(config.TOKEN);
 
 const flagPrefix = 'NTI{';
 
-// When the bot is connected and ready, log to console.
 client.on('ready', () => {
    console.log('ready.');
 });
@@ -15,22 +15,22 @@ client.on("message", (message) => {
     isValidFlag=false;
 
     if (message.content.startsWith(flagPrefix)){
-
         //message is a flag
-        if (message.content==("NTI{flag1}")) {
-            message.channel.send("flag1!");
-            isValidFlag=true;
+        
+        for(i=0;i<flags.flags.length;i++){
+            if(message.content==flags.flags[i]){
+                isValidFlag=true
+                message.channel.send("<#"+message.channel.id+">"+"  <@"+message.author.id+"> "+flags.responses[i]);
+            }
         }
-        if (message.content==("NTI{flag2}")) {
-            message.channel.send("flag2!");
-            isValidFlag=true;
-        }
+
 
         if(!isValidFlag){
-            message.channel.send("Invalid flag!");
+            message.channel.send("<@"+message.author.id+"> Invalid flag.");
         }
 
         message.delete();
+        return
     }
 
 });
