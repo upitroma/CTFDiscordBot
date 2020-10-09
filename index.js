@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.login("NzYzOTI1MzM2OTA3MDU1MTI0.X3-y6Q.XF0r8bb4sWCXvaIJpZngWV_T_FI");
+client.login(config.TOKEN);
 
 const flagPrefix = 'NTI{';
 
