@@ -1,38 +1,36 @@
-//https://www.toptal.com/chatbot/how-to-make-a-discord-bot
-const eris = require('eris');
+const Discord = require('discord.js');
+const client = new Discord.Client();
+client.login("NzYzOTI1MzM2OTA3MDU1MTI0.X3-y6Q.XF0r8bb4sWCXvaIJpZngWV_T_FI");
 
-// Create a Client instance with our bot token.
-const bot = new eris.Client('NzYzOTI1MzM2OTA3MDU1MTI0.X3-y6Q.XF0r8bb4sWCXvaIJpZngWV_T_FI');
+const flagPrefix = 'NTI{';
 
 // When the bot is connected and ready, log to console.
-bot.on('ready', () => {
-   console.log('Connected and ready.');
+client.on('ready', () => {
+   console.log('ready.');
 });
 
-// Every time a message is sent anywhere the bot is present,
-// this event will fire and we will check if the bot was mentioned.
-// If it was, the bot will attempt to respond with "Present".
-bot.on('messageCreate', async (msg) => {
-   const botWasMentioned = msg.mentions.find(
-       mentionedUser => mentionedUser.id === bot.user.id,
-   );
+client.on("message", (message) => {
+    
+    isValidFlag=false;
 
-   if (botWasMentioned) {
-       try {
-           await msg.channel.createMessage('Present');
-       } catch (err) {
-           // There are various reasons why sending a message may fail.
-           // The API might time out or choke and return a 5xx status,
-           // or the bot may not have permission to send the
-           // message (403 status).
-           console.warn('Failed to respond to mention.');
-           console.warn(err);
-       }
-   }
+    if (message.content.startsWith(flagPrefix)){
+
+        //message is a flag
+        if (message.content==("NTI{flag1}")) {
+            message.channel.send("flag1!");
+            isValidFlag=true;
+        }
+        if (message.content==("NTI{flag2}")) {
+            message.channel.send("flag2!");
+            isValidFlag=true;
+        }
+
+        if(!isValidFlag){
+            message.channel.send("Invalid flag!");
+            console.log("invalid flag")
+        }
+
+        message.delete();
+    }
+
 });
-
-bot.on('error', err => {
-   console.warn(err);
-});
-
-bot.connect();
