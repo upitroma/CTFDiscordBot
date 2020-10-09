@@ -10,4 +10,5 @@ a bot to help manage the ctf
     "TOKEN":"your_secret_token_here"
 }
 ```
-4. run `node index.js`
+4. configure flags and responses in `strings.json`
+5. run `node index.js`
