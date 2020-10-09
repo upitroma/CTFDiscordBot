@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const config = require("./token.json");
-const flags = require("./flags.json");
+const strings = require("./strings.json");
 const client = new Discord.Client();
 client.login(config.TOKEN);
 
@@ -16,11 +16,11 @@ client.on("message", (message) => {
 
     if (message.content.startsWith(flagPrefix)){
         //message is a flag
-        
-        for(i=0;i<flags.flags.length;i++){
-            if(message.content==flags.flags[i]){
+
+        for(i=0;i<strings.flags.length;i++){
+            if(message.content==strings.flags[i]){
                 isValidFlag=true
-                message.channel.send("<#"+message.channel.id+">"+"  <@"+message.author.id+"> "+flags.responses[i]);
+                message.channel.send("<#"+message.channel.id+">"+"  <@"+message.author.id+"> "+strings.responses[i]);
             }
         }
 
