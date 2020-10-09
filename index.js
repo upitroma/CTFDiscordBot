@@ -4,6 +4,17 @@ const strings = require("./strings.json");
 const client = new Discord.Client();
 client.login(config.TOKEN);
 
+
+class Hacker{
+    constructor(userId){
+        this.userId=userId;
+        this.score=0;
+        this.achievements=[];
+    }
+}
+hackers=[];
+
+
 const flagPrefix = 'NTI{';
 
 client.on('ready', () => {
@@ -20,13 +31,32 @@ client.on("message", (message) => {
         for(i=0;i<strings.flags.length;i++){
             if(message.content==strings.flags[i]){
                 isValidFlag=true
-                message.channel.send("<#"+message.channel.id+">"+"  <@"+message.author.id+"> "+strings.responses[i]);
+
+                //reward hacker
+                hackerExists=false
+                for(i=0;i<hackers.length;i++){
+                    h=hackers[i]
+                    if(h.userId==message.author.id){
+                        hackerExists=true
+                        h.score++;
+                        message.channel.send(/*"<#"+message.channel.id+">"+*/"  <@"+message.author.id+"> "+strings.responses[i]+"\n"+"current score: "+h.score);
+                    }
+                }
+                if(!hackerExists){
+                    h=new Hacker(message.author.id)
+                    h.score=1;
+                    hackers.push(h)
+                    message.channel.send(/*"<#"+message.channel.id+">"+*/"  <@"+message.author.id+"> "+strings.responses[i]+"\n"+"current score: "+h.score);
+                    console.log("new hacker added! username: "+message.author.username)
+                }
+
+
             }
         }
 
 
         if(!isValidFlag){
-            message.channel.send("<@"+message.author.id+"> Invalid flag.");
+            message.channel.send("<@"+message.author.id+"> You didn't say the magic word.");
         }
 
         message.delete();
