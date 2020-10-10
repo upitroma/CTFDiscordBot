@@ -1,4 +1,6 @@
 {
     "flags":["NTI{flag1}","NTI{flag2}"],
-    "responses":["is in!","has rooted the system!"]
+    "responses":["is in!","has rooted the system!"],
+    "achievements":["did the thing","did the other thing"],
+    "pointValues":[50,100]
 }
