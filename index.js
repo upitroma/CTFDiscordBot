@@ -85,6 +85,10 @@ client.on("message", (message) => {
         printScore()
     }
 
+    else if(message.content.includes("I'm")&& message.author.bot === false){
+        dadMsg = message.content.split(`I'm`).pop();
+        client.channels.cache.get('759916479835275305').send("<@"+message.author.id+"> Hi"+dadMsg+", I'm dad!");
+    }
 });
 
 
