@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
-const config = require("./token.json");
+const secrets = require("./secrets.json");
 const strings = require("./strings.json");
 const bot = new Discord.Client();
-bot.login(config.TOKEN);
+bot.login(secrets.TOKEN);
 
 
 class Hacker{
@@ -11,6 +11,7 @@ class Hacker{
         this.score=0;
         this.achievements=[];
         this.username=username;
+        this.login=null;
     }
 }
 hackers=[];
@@ -74,7 +75,7 @@ bot.on("message", (message) => {
 
                     h.score+=strings.pointValues[i];
                     h.achievements.push(strings.achievements[i]);
-                    botChannel.send(/*"<#"+message.channel.id+">"+*/"  <@"+message.author.id+"> "+strings.responses[i]+"\n+"+strings.pointValues[i]+"\ncurrent score: "+h.score);
+                    botChannel.send("  <@"+message.author.id+"> "+strings.responses[i]+"\n+"+strings.pointValues[i]+"\ncurrent score: "+h.score);
                     console.log("new hacker added! username: "+message.author.username)
                 }
             }
@@ -82,15 +83,20 @@ bot.on("message", (message) => {
 
 
         if(!isValidFlag){
-            botChannel.send("<@"+message.author.id+"> You didn't say the magic word.");
+            wittyResponse=strings.invalidFlagResponses[Math.floor(Math.random() * strings.invalidFlagResponses.length)];
+            botChannel.send("<@"+message.author.id+"> "+wittyResponse+".");
         }
 
         message.delete();
         return
     }
 
-    else if(message.content=="!score"){
+    else if(message.content.includes("!score")){
         printScore()
+    }
+
+    else if(message.content.includes("!login")){
+        sendLogin(message.author)
     }
 
     else if(message.content.includes("I'm")&& message.author.bot === false){
@@ -98,9 +104,53 @@ bot.on("message", (message) => {
         botChannel.send("<@"+message.author.id+"> Hi"+dadMsg+", I'm dad!");
     }
 });
+var loginIndex=0
+function sendLogin(author){
+    hackerExists=false
+    h=null;
+    for(j=0;j<hackers.length;j++){
+        h=hackers[j]
+        if(h.userId==author.id){
+            hackerExists=true
+            break;
+        }
+    }
+    if(!hackerExists){
+        h=new Hacker(author.id,author.username)
+        hackers.push(h)
+    }
 
+    if(!h.login){
+        if(loginIndex>=secrets.LOGINS.length-1){
+            console.log("I've run out of logins. HALP!")
+            h.login=secrets.LOGINS[secrets.LOGINS.length-1];
+        }
+        else{
+            h.login=secrets.LOGINS[loginIndex++]
+        }
+    
+        author.send("username: "+h.login.username+"\npassword: "+h.login.password)
+    
+        botChannel.send(h.username+" was assigned user: "+h.login.username)
+        console.log(h.username+" assigned login: "+h.login.username+" "+h.login.password)
+    }
+    else{
+        botChannel.send("<@"+author.id+"> You've allready been given a login. Check your DMs.")
+    }
+    
+    
+}
 
 function printScore(){
+
+    if(!hackers){
+        botChannel.send("something horribly wrong has happened. Tell my owner to check their error logs.");
+        return;
+    }
+    if(hackers.length==0){
+        botChannel.send("0. The score is 0. Nobody has scored. You all are terrible at this.");
+        return;
+    }
 
     hackers.sort(function (a, b) {
         return a.score - b.score;
