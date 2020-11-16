@@ -22,7 +22,7 @@ const flagPrefix = 'NTI{';
 var botChannel
 bot.once("ready", async () => {
     // Fetch the channel
-    botChannel = await bot.channels.fetch("775031298371878942")
+    botChannel = await bot.channels.fetch("759916479835275305")
     // Note that it's possible the channel couldn't be found
     if (!botChannel) {
       return console.log("could not find channel")
@@ -95,7 +95,7 @@ bot.on("message", (message) => {
         printScore()
     }
 
-    else if(message.content.includes("!login")){
+    else if(false/*message.content.includes("!login")*/){
         sendLogin(message.author)
     }
 

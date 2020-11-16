@@ -1,7 +1,7 @@
 {
-    "flags":["NTI{flag-submission-test}","NTI{7468-9993-0123}","NTI{3621-home-7621}","NTI{8847-8857-0948}","NTI{1234-4321-5678}","NTI{404}","NTI{8888-8888-8888}","NTI{U-ZQQP-FA-BQQ}","NTI{42069}"],
-    "responses":["can follow basic instructions!","has rooted the FTP server!!!","has logged in!","upgraded their shell!","found the http server!","has good ears","can retrieve files","reverse engineered the program","T O A S T E R"],
-    "achievements":["submited a flag","rooted the FTP/http server","logged into Terry's computer","upgraded shell","found the http server","solved the audio file","retrieved a file","reverse engineered the program","T O A S T E R"],
-    "pointValues":[1,100,10,20,20,50,30,40,69],
+    "flags":["NTI{flag-submission-test}","NTI{so-far-so-good}","NTI{LEAF}","NTI{i-need-to-do-my-english-paper}","NTI{I will not modify files}","NTI{this-is-where-the-fun-begins}","NTI{the-real-ethereum-is-the-friends-we-made-along-the-way}"],
+    "responses":["can follow basic instructions!","logged in as guest!","read the rules!","logged in as employee!","promised not to tamper with the server.","logged in as admin!","GOT INTO THE VAULT!!!!!"],
+    "achievements":["submited a flag","guest access","member access","employee access","moderator access","admin access","broke into the vault!"],
+    "pointValues":[1,5,20,40,100,200,500],
     "invalidFlagResponses":["You didn't say the magic word","You have no power here!","Invalid flag","YOU SHALL NOT PASS!!"]
 }
