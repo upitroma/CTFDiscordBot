@@ -1,5 +1,5 @@
 {
-    "flags":["NTI{flag-submission-test}","NTI{so-far-so-good}","NTI{LEAF}","NTI{i-need-to-do-my-english-paper}","NTI{I will not modify files}","NTI{this-is-where-the-fun-begins}","NTI{the-real-ethereum-is-the-friends-we-made-along-the-way}"],
+    "flags":["NTI{flag-submission-test}","NTI{so-far-so-good}","NTI{LEAF}","NTI{i-need-to-do-my-english-paper}","NTI{I-will-not-modify-files}","NTI{this-is-where-the-fun-begins}","NTI{the-real-ethereum-is-the-friends-we-made-along-the-way}"],
     "responses":["can follow basic instructions!","logged in as guest!","read the rules!","logged in as employee!","promised not to tamper with the server.","logged in as admin!","GOT INTO THE VAULT!!!!!"],
     "achievements":["submited a flag","guest access","member access","employee access","moderator access","admin access","broke into the vault!"],
     "pointValues":[1,5,20,40,100,200,500],
