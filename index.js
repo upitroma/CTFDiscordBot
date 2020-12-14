@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const secrets = require("./secrets.json");
+const secrets = require("./token.json");
 const strings = require("./strings.json");
 const bot = new Discord.Client();
 bot.login(secrets.TOKEN);
@@ -95,51 +95,11 @@ bot.on("message", (message) => {
         printScore()
     }
 
-    else if(false/*message.content.includes("!login")*/){
-        sendLogin(message.author)
-    }
-
     else if(message.content.includes("I'm")&& message.author.bot === false){
         dadMsg = message.content.split(`I'm`).pop();
         botChannel.send("<@"+message.author.id+"> Hi"+dadMsg+", I'm dad!");
     }
 });
-var loginIndex=0
-function sendLogin(author){
-    hackerExists=false
-    h=null;
-    for(j=0;j<hackers.length;j++){
-        h=hackers[j]
-        if(h.userId==author.id){
-            hackerExists=true
-            break;
-        }
-    }
-    if(!hackerExists){
-        h=new Hacker(author.id,author.username)
-        hackers.push(h)
-    }
-
-    if(!h.login){
-        if(loginIndex>=secrets.LOGINS.length-1){
-            console.log("I've run out of logins. HALP!")
-            h.login=secrets.LOGINS[secrets.LOGINS.length-1];
-        }
-        else{
-            h.login=secrets.LOGINS[loginIndex++]
-        }
-    
-        author.send("username: "+h.login.username+"\npassword: "+h.login.password)
-    
-        botChannel.send(h.username+" was assigned user: "+h.login.username)
-        console.log(h.username+" assigned login: "+h.login.username+" "+h.login.password)
-    }
-    else{
-        botChannel.send("<@"+author.id+"> You've allready been given a login. Check your DMs.")
-    }
-    
-    
-}
 
 function printScore(){
 
